@@ -43,6 +43,12 @@ class Main {
     this.scene.init(this.gl).then(() => {
       this.draw();
     });
+
+    document.getElementById("btn").addEventListener("click", this.changeScene())
+  }
+
+  changeScene() {
+    
   }
 
   setViewport() {

@@ -5,7 +5,7 @@ body {
 #glcanvas {
     position: absolute;
     left: 10px;
-    top: 10px;
+    top: 40px;
     width: 1024;
     height: 768;
     background-color: black;

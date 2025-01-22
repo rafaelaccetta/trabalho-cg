@@ -29,24 +29,23 @@ export default class Mesh {
   }
 
   async loadMeshV4() { //ADAPTAR PARA O MODELO
-    const resp = await fetch('bunny.obj');
+    const resp = await fetch("bunny.obj");
     const text = await resp.text();
-
-    const txtList = text.split(/\s+/)
-    const data = txtList.map(d => +d);
-
-    const nv = data[0];
-    const nt = data[1];
 
     const coords = [];
     const indices = [];
 
-    for (let did = 2; did < data.length; did++) {
-      if (did < 4 * nv + 2) {
-        coords.push(data[did]);
-      }
-      else {
-        indices.push(data[did]);
+    const lines = text.split('\n')
+
+    //O modelo tem vertices, normais e triangulos. Acho que não precisa das normais, mas se precisar altero depois.
+    for (let i = 3; i < lines.length; i++) {
+      const data = lines[i].trim().split()
+      if (data[0] === "v"){
+        console.log('chegou v')
+        coords.push(parseFloat(data[1]), parseFloat(data[2]), parseFloat(data[3]))
+      } else if (data[0] === "f"){
+        console.log("chegou f")
+        indices.push(parseFloat(data[1]), parseFloat(data[2]), parseFloat(data[3]))
       }
     }
 

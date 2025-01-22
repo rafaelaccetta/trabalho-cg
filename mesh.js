@@ -47,9 +47,9 @@ export default class Mesh {
           parseFloat(data[3]))
       } else if (data[0] == "f"){
         indices.push(
-          parseFloat(data[1]),
-          parseFloat(data[2]),
-          parseFloat(data[3]))
+          parseInt(data[1]),
+          parseInt(data[2]),
+          parseInt(data[3]))
       }
     }
 

@@ -1,7 +1,7 @@
 export default class Camera {
   constructor(gl) {
     // Posição da camera
-    this.eye = vec3.fromValues(5.0, 2.0, 1.0);
+    this.eye = vec3.fromValues(3.0, 3.0, 3.0);
     this.at  = vec3.fromValues(0.0, 0.0, 0.0);
     this.up  = vec3.fromValues(0.0, 1.0, 0.0);
 
@@ -9,10 +9,10 @@ export default class Camera {
     this.fovy = Math.PI / 2;
     this.aspect = gl.canvas.width / gl.canvas.height;
 
-    this.left = -2.5;
-    this.right = 2.5;
-    this.top = 2.5;
-    this.bottom = -2.5;
+    this.left = -10.0;
+    this.right = 10.0;
+    this.top = 10.0;
+    this.bottom = -10.0;
 
     this.near = 0;
     this.far = 5;
@@ -22,6 +22,14 @@ export default class Camera {
     this.proj = mat4.create();
 
     this.angle = 0.0;
+
+    this.rotate = false;
+
+    this.cont = 0;
+  }
+
+  changeMode() {
+    this.rotate = this.rotate ? false : true;
   }
 
   getView() {
@@ -41,10 +49,10 @@ export default class Camera {
   updateProjectionMatrix(type = '') {
     mat4.identity( this.proj );
 
-    if (type === 'ortho') {
-      mat4.ortho(this.proj, this.left * 1024/768, this.right * 1024/768, this.bottom , this.top, this.near, this.far);
-    } else {
+    if (this.rotate) {
       mat4.perspective(this.proj, this.fovy, this.aspect, this.near, this.far);
+    } else {
+      mat4.ortho(this.proj, this.left * 1024/768, this.right * 1024/768, this.bottom , this.top, this.near, this.far);
     }
   }
 
@@ -53,7 +61,20 @@ export default class Camera {
     this.updateViewMatrix();
     this.updateProjectionMatrix();
 
-    this.angle += 0.0125;
+    this.cont += 0.01
+
+    if (this.cont >= 5.0){
+      this.cont = 0;
+      this.changeMode();
+    };
+
+
+    if (this.rotate) {
+      this.angle += 0.01;
+    } else {
+      this.angle = 0.0;
+    };
+
     mat4.rotateY(this.view, this.view, this.angle);
   }
 }

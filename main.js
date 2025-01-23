@@ -44,12 +44,12 @@ class Main {
       this.draw();
     });
 
-    document.getElementById("btn").addEventListener("click", this.changeScene());
+    document.getElementById("btn").addEventListener("click", this.changeScene);
   }
 
 
   changeScene() {
-       
+    this.cam.changeMode()   
   }
 
   setViewport() {

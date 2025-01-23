@@ -1,26 +1,29 @@
 export default class Light { //ADAPTAR PARA 2 FONTES DE LUZ
   constructor() {
+
+    //Luz Amarela
     this.pos_a = vec4.fromValues(2.0, 2.0, 2.0, 1.0);
 
     this.amb_c_a = vec4.fromValues(2.0, 2.0, 0.0, 1.0);
-    this.amb_k_a = 0.1;
+    this.amb_k_a = 0.4;
 
-    this.dif_c_a = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
-    this.dif_k_a = 0.1;
+    this.dif_c_a = vec4.fromValues(2.0, 2.0, 0.0, 1.0);
+    this.dif_k_a = 0.5;
 
-    this.esp_c_a = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
-    this.esp_k_a = 0.8;
+    this.esp_c_a = vec4.fromValues(2.0, 2.0, 0.0, 1.0);
+    this.esp_k_a = 0.4;
     this.esp_p_a = 5.0;
 
-    this.pos_b = vec4.fromValues(2.0, 2.0, 2.0, 1.0);
+    //Luz Branca
+    this.pos_b = vec4.fromValues(-2.0, 2.0, 2.0, 1.0);
 
-    this.amb_c_b = vec4.fromValues(2.0, 2.0, 10.0, 1.0);
+    this.amb_c_b = vec4.fromValues(2.0, 2.0, 20.0, 1.0);
     this.amb_k_b = 0.4;
 
-    this.dif_c_b = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
+    this.dif_c_b = vec4.fromValues(2.0, 2.0, 2.0, 1.0);
     this.dif_k_b = 0.5;
 
-    this.esp_c_b = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
+    this.esp_c_b = vec4.fromValues(2.0, 2.0, 2.0, 1.0);
     this.esp_k_b = 0.4;
     this.esp_p_b = 5.0;
   }

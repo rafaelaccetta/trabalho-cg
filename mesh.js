@@ -102,24 +102,17 @@ export default class Mesh {
   }
 
   updateModelMatrix() { //ADAPTAR PARA A CENA
-    this.angle += 0.005;
+    //this.angle += 0.005;
 
     mat4.identity( this.model );
     //mat4.translate(this.model, this.model, [this.delta, 0, 0]);
-    // [1 0 0 delta, 0 1 0 0, 0 0 1 0, 0 0 0 1] * this.mat 
+  
+    //mat4.rotateY(this.model, this.model, this.angle);
 
-    mat4.rotateY(this.model, this.model, this.angle);
-    // [ cos(this.angle) 0 -sin(this.angle) 0, 
-    //         0         1        0         0, 
-    //   sin(this.angle) 0  cos(this.angle) 0, 
-    //         0         0        0         1]
-    // * this.mat 
+    //mat4.translate(this.model, this.model, [-0.25, -0.25, -0.25]);
 
-    mat4.translate(this.model, this.model, [-0.25, -0.25, -0.25]);
-    // [1 0 0 -0.5, 0 1 0 -0.5, 0 0 1 -0.5, 0 0 0 1] * this.mat 
-
-    mat4.scale(this.model, this.model, [0.5, 0.5, 0.5]);
-    // [5 0 0 0, 0 5 0 0, 0 0 5 0, 0 0 0 1] * this.mat 
+    //mat4.scale(this.model, this.model, [0.5, 0.5, 0.5]);
+    
   }
 
   draw(gl, cam, light) {

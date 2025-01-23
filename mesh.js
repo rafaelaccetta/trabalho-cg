@@ -44,12 +44,13 @@ export default class Mesh {
         coords.push(
           parseFloat(data[1]),
           parseFloat(data[2]),
-          parseFloat(data[3]))
+          parseFloat(data[3]),
+          1.0)
       } else if (data[0] == "f"){
         indices.push(
-          parseInt(data[1]),
-          parseInt(data[2]),
-          parseInt(data[3]))
+          parseInt(data[1]) - 1,
+          parseInt(data[2]) - 1,
+          parseInt(data[3]) - 1)
       }
     }
 

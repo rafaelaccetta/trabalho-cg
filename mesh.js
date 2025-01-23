@@ -105,7 +105,7 @@ export default class Mesh {
     this.angle += 0.005;
 
     mat4.identity( this.model );
-    mat4.translate(this.model, this.model, [this.delta, 0, 0]);
+    //mat4.translate(this.model, this.model, [this.delta, 0, 0]);
     // [1 0 0 delta, 0 1 0 0, 0 0 1 0, 0 0 0 1] * this.mat 
 
     mat4.rotateY(this.model, this.model, this.angle);
@@ -118,7 +118,7 @@ export default class Mesh {
     mat4.translate(this.model, this.model, [-0.25, -0.25, -0.25]);
     // [1 0 0 -0.5, 0 1 0 -0.5, 0 0 1 -0.5, 0 0 0 1] * this.mat 
 
-    mat4.scale(this.model, this.model, [5, 5, 5]);
+    mat4.scale(this.model, this.model, [0.5, 0.5, 0.5]);
     // [5 0 0 0, 0 5 0 0, 0 0 5 0, 0 0 0 1] * this.mat 
   }
 

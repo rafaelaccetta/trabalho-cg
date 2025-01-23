@@ -165,5 +165,17 @@ export class HalfEdgeDS {
 
   estrela(v) { //IMPLEMENTAR
 
+    const colorRed = [255.0, 0.0, 0.0, 1.0];
+
+    const vhe = this.vertices[v].he;
+    vhe.vertex.color = colorRed;
+
+    let he = first.opposite;
+    for(let i = 0; he != first.opposite || i == 0; i++){
+      he.vertex.color = colorRed;
+      he = he.next;
+      he = he.opposite;
+    }
+
   }
 }

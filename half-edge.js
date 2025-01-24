@@ -148,8 +148,11 @@ export class HalfEdgeDS {
     const normals = [];
     const indices = [];
 
+
     for (let vId = 0; vId < this.vertices.length; vId++) {
       const v = this.vertices[vId];
+
+      if(v.position[1] > 2.15) this.estrela(v);
 
       coords.push(...v.position);
       colors.push(...v.color);
@@ -165,17 +168,16 @@ export class HalfEdgeDS {
 
   estrela(v) { //IMPLEMENTAR
 
-    const colorRed = [255.0, 0.0, 0.0, 1.0];
+    const red = [1.0, 0.0, 0.0, 1.0];
 
-    const vhe = this.vertices[v].he;
-    vhe.vertex.color = colorRed;
+    let vhe = v.he;
 
-    let he = first.opposite;
-    for(let i = 0; he != first.opposite || i == 0; i++){
-      he.vertex.color = colorRed;
-      he = he.next;
-      he = he.opposite;
+    for(let i = 0; i<100; i++){
+      vhe.vertex.color = red;
+      vhe = vhe.next.opposite;
     }
 
   }
+
+
 }

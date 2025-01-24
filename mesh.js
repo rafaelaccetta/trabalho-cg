@@ -68,6 +68,7 @@ export default class Mesh {
 
         coords.push(x, y, z, 1.0)
 
+
       } else if (data[0] == "f"){
         indices.push(
           parseInt(data[1]) - 1,
@@ -99,6 +100,7 @@ export default class Mesh {
   }
 
   createVAO(gl) {
+
     const vbos = this.heds.getVBOs();
     console.log(vbos);
 

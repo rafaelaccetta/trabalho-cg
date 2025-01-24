@@ -35,7 +35,7 @@ export class HalfEdgeDS {
     this.faces = [];
   }
 
-  build(coords, trigs) {
+  build(coords, normals, trigs) {
     // construção dos vértices
     for (let vid = 0; vid < coords.length; vid+=4) {
       const x = coords[vid];
@@ -44,6 +44,16 @@ export class HalfEdgeDS {
 
       const v = new Vertex(vid / 4, x, y, z);
       this.vertices.push(v);
+    }
+
+    for (let nid = 0; nid < normals.length; nid+=3){
+      const nx = normals[nid + 0];
+      const ny = normals[nid + 1];
+      const nz = normals[nid + 2];
+
+      this.vertices[nid / 3].normal[0] = nx;
+      this.vertices[nid / 3].normal[1] = ny;
+      this.vertices[nid / 3].normal[2] = nz;
     }
 
     // construção das faces & half-edges
@@ -74,8 +84,6 @@ export class HalfEdgeDS {
 
     this.computeOpposites();
     this.computeVertexHe();
-
-    this.computeNormals();
 
     console.log(this);
   }

@@ -45,6 +45,7 @@ export default class Mesh {
 
     const coords = [];
     const indices = [];
+    const normals = [];
 
     const lines = text.split('\n')
 
@@ -68,8 +69,15 @@ export default class Mesh {
 
         coords.push(x, y, z, 1.0)
 
+      } else if (data[0] == "vn"){
+        normals.push(
+          parseFloat(data[1]),
+          parseFloat(data[2]),
+          parseFloat(data[3])
+        )
+      }
 
-      } else if (data[0] == "f"){
+      else if (data[0] == "f"){
         indices.push(
           parseInt(data[1]) - 1,
           parseInt(data[2]) - 1,
@@ -81,8 +89,8 @@ export default class Mesh {
     this.center_y = this.center_y / this.vertex_count;
     this.center_z = this.center_z / this.vertex_count;
 
-    console.log(coords, indices);
-    this.heds.build(coords, indices);
+    console.log(coords, normals, indices);
+    this.heds.build(coords, normals, indices);
   }
 
   createShader(gl) {

@@ -5,20 +5,20 @@ export default class Light { //ADAPTAR PARA 2 FONTES DE LUZ
     this.pos_b = vec4.fromValues(100.0, 100.0, 0.0, 1.0);
 
     this.amb_c_b = vec4.fromValues(1.0, 1.0, 0.0, 1.0);
-    this.amb_k_b = 1.0;
+    this.amb_k_b = 0.5;
 
     this.dif_c_b = vec4.fromValues(1.0, 1.0, 0.0, 1.0);
-    this.dif_k_b = 1.0;
+    this.dif_k_b = 0.8;
 
     this.esp_c_b = vec4.fromValues(1.0, 1.0, 0.0, 1.0);
-    this.esp_k_b = 1.0;
-    this.esp_p_b = 1.0;
+    this.esp_k_b = 10.0;
+    this.esp_p_b = 0.5;
 
     //Luz Branca
     this.pos_a = vec4.fromValues(-100.0, 100.0, 0.0, 1.0);
 
     this.amb_c_a = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
-    this.amb_k_a = 0.5;
+    this.amb_k_a = 1.0;
 
     this.dif_c_a = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
     this.dif_k_a = 1.0;
@@ -43,7 +43,7 @@ export default class Light { //ADAPTAR PARA 2 FONTES DE LUZ
     gl.uniform1f(difKLoc_a, this.dif_k_a);
 
     const espCLoc_a = gl.getUniformLocation(program, "light_esp_c_a");
-    gl.uniform4fv(espCLoc_a, this.pos_a);
+    gl.uniform4fv(espCLoc_a, this.esp_c_a);
     const espKLoc_a = gl.getUniformLocation(program, "light_esp_k_a")
     gl.uniform1f(espKLoc_a, this.esp_k_a);
     const espPLoc_a = gl.getUniformLocation(program, "light_esp_p_a")
@@ -65,7 +65,7 @@ export default class Light { //ADAPTAR PARA 2 FONTES DE LUZ
     gl.uniform1f(difKLoc_b, this.dif_k_b);
 
     const espCLoc_b = gl.getUniformLocation(program, "light_esp_c_b");
-    gl.uniform4fv(espCLoc_b, this.pos_b);
+    gl.uniform4fv(espCLoc_b, this.esp_c_b);
     const espKLoc_b = gl.getUniformLocation(program, "light_esp_k_b")
     gl.uniform1f(espKLoc_b, this.esp_k_b);
     const espPLoc_b = gl.getUniformLocation(program, "light_esp_p_b")

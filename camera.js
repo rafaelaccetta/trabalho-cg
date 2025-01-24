@@ -23,7 +23,7 @@ export default class Camera {
 
     this.angle = 0.0;
 
-    this.rotate = true;
+    this.rotate = false;
 
     this.cont = 0;
   }

@@ -5,27 +5,27 @@ export default class Light { //ADAPTAR PARA 2 FONTES DE LUZ
     this.pos_b = vec4.fromValues(100.0, 100.0, 0.0, 1.0);
 
     this.amb_c_b = vec4.fromValues(1.0, 1.0, 0.0, 1.0);
-    this.amb_k_b = 0.5;
+    this.amb_k_b = 1.0;
 
     this.dif_c_b = vec4.fromValues(1.0, 1.0, 0.0, 1.0);
     this.dif_k_b = 1.0;
 
     this.esp_c_b = vec4.fromValues(1.0, 1.0, 0.0, 1.0);
     this.esp_k_b = 1.0;
-    this.esp_p_b = 80.0;
+    this.esp_p_b = 1.0;
 
     //Luz Branca
-    this.pos_a = vec4.fromValues(-100.0, 100.0, 10.0, 1.0);
+    this.pos_a = vec4.fromValues(-100.0, 100.0, 0.0, 1.0);
 
     this.amb_c_a = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
     this.amb_k_a = 0.5;
 
     this.dif_c_a = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
-    this.dif_k_a = 5.0;
+    this.dif_k_a = 1.0;
 
     this.esp_c_a = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
     this.esp_k_a = 1.0;
-    this.esp_p_a = 80.0;
+    this.esp_p_a = 1.0;
   }
 
   createUniforms(gl, program){

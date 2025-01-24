@@ -70,7 +70,7 @@ export default class Camera {
 
 
     if (this.rotate) {
-      this.angle += 0.01;
+      this.angle += 0.005;
     } else {
       this.angle = 0.0;
     };

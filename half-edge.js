@@ -171,11 +171,16 @@ export class HalfEdgeDS {
     const red = [1.0, 0.0, 0.0, 1.0];
 
     v.color = red;
-    //saida: v inicial ou opposite = null;
     let w = v.he.next; 
     while(w.opposite != null && w.opposite.vertex.position != v.position){
-      w.opposite.vertex.color;
+      w.opposite.vertex.color = red;
       w = w.opposite.next;
+    }
+
+    w = v.he.next.next; 
+    while(w.opposite != null && w.opposite.vertex.position != v.position){
+      w.opposite.vertex.color = red;
+      w = w.opposite.next.next;
     }
 
   }

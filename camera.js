@@ -22,9 +22,8 @@ export default class Camera {
     this.proj = mat4.create();
 
     this.angle = 0.0;
-
     this.rotate = true;
-    
+    this.cont = 0; 
   }
 
   changeMode() {

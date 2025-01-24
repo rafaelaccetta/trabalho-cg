@@ -24,8 +24,7 @@ export default class Camera {
     this.angle = 0.0;
 
     this.rotate = true;
-
-    this.cont = 0;
+    
   }
 
   changeMode() {
@@ -43,7 +42,15 @@ export default class Camera {
   updateViewMatrix() {
     mat4.identity( this.view );
     mat4.lookAt(this.view, this.eye, this.at, this.up);
-    // TODO: Tentar implementar as contas diretamente
+
+    if (this.rotate) {
+      this.angle += 0.01;
+    } else {
+      this.angle = 0.0;
+    };
+
+    mat4.rotateY(this.view, this.view, this.angle);
+  
   }
 
   updateProjectionMatrix(type = '') {
@@ -60,21 +67,5 @@ export default class Camera {
   updateCam() {
     this.updateViewMatrix();
     this.updateProjectionMatrix();
-
-    //this.cont += 0.01
-
-    if (this.cont >= 5.0){
-      this.cont = 0;
-      this.changeMode();
-    };
-
-
-    if (this.rotate) {
-      this.angle += 0.005;
-    } else {
-      this.angle = 0.0;
-    };
-
-    mat4.rotateY(this.view, this.view, this.angle);
   }
 }

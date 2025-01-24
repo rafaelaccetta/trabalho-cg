@@ -1,7 +1,7 @@
 export default class Camera {
   constructor(gl) {
     // Posição da camera
-    this.eye = vec3.fromValues(3.0, 3.0, 3.0);
+    this.eye = vec3.fromValues(50.0, 50.0, 50.0);
     this.at  = vec3.fromValues(0.0, 0.0, 0.0);
     this.up  = vec3.fromValues(0.0, 1.0, 0.0);
 
@@ -9,13 +9,13 @@ export default class Camera {
     this.fovy = Math.PI / 2;
     this.aspect = gl.canvas.width / gl.canvas.height;
 
-    this.left = -10.0;
-    this.right = 10.0;
-    this.top = 10.0;
-    this.bottom = -10.0;
+    this.left = -100.0;
+    this.right = 100.0;
+    this.top = 100.0;
+    this.bottom = -100.0;
 
-    this.near = 0;
-    this.far = 5;
+    this.near = 0.0;
+    this.far = 100.0;
 
     // Matrizes View e Projection
     this.view = mat4.create();
@@ -23,7 +23,7 @@ export default class Camera {
 
     this.angle = 0.0;
 
-    this.rotate = false;
+    this.rotate = true;
 
     this.cont = 0;
   }
@@ -61,7 +61,7 @@ export default class Camera {
     this.updateViewMatrix();
     this.updateProjectionMatrix();
 
-    this.cont += 0.01
+    //this.cont += 0.01
 
     if (this.cont >= 5.0){
       this.cont = 0;

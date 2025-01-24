@@ -11,16 +11,16 @@ class Scene {
     this.light = new Light();
 
     // Mesh
-    this.mesh = new Mesh( 1.0);
-    this.copy = new Mesh(-1.0);
+    this.mesh = new Mesh( 0.0);
+    //this.copy = new Mesh(-50.0);
   }
 
   async init(gl) {
     await this.mesh.loadMeshV4();
     this.mesh.init(gl, this.light);
 
-    await this.copy.loadMeshV4()
-    this.copy.init(gl, this.light);
+    //await this.copy.loadMeshV4()
+    //this.copy.init(gl, this.light);
   }
 
   draw(gl) {  
@@ -28,7 +28,7 @@ class Scene {
     this.light.updateLight();
 
     this.mesh.draw(gl, this.cam, this.light);
-    this.copy.draw(gl, this.cam, this.light);
+    //this.copy.draw(gl, this.cam, this.light);
   }
 }
 
@@ -43,13 +43,13 @@ class Main {
     this.scene.init(this.gl).then(() => {
       this.draw();
     });
-
-    document.getElementById("btn").addEventListener("click", this.changeScene);
+    
+    document.getElementById("btn").addEventListener("click", () => this.changeScene());
   }
 
 
   changeScene() {
-    this.cam.changeMode()   
+    this.scene.cam.changeMode();   
   }
 
   setViewport() {

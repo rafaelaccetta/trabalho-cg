@@ -26,6 +26,17 @@ export default class Mesh {
     this.uModelLoc = -1;
     this.uViewLoc = -1;
     this.uProjectionLoc = -1;
+
+
+    this.vertex_count = 0;
+
+    this.center_x = 0.0;
+    this.center_y = 0.0;
+    this.center_z = 0.0;
+
+    this.min_x = 0.0;
+    this.max_x = 0.0;
+    
   }
 
   async loadMeshV4() { //ADAPTAR PARA O MODELO
@@ -41,11 +52,22 @@ export default class Mesh {
     for (let i = 3; i < lines.length; i++) {
       const data = lines[i].trim().split(/\s+/)
       if (data[0] == "v"){
-        coords.push(
-          parseFloat(data[1]),
-          parseFloat(data[2]),
-          parseFloat(data[3]),
-          1.0)
+
+        this.vertex_count += 1;
+
+        let x = parseFloat(data[1]);
+        let y = parseFloat(data[2]);
+        let z = parseFloat(data[3]);
+
+        this.min_x = this.min_x < x ? this.min_x : x;
+        this.max_x = this.max_x > x ? this.max_x : x;
+
+        this.center_x += x;
+        this.center_y += y;
+        this.center_z += z;
+
+        coords.push(x, y, z, 1.0)
+
       } else if (data[0] == "f"){
         indices.push(
           parseInt(data[1]) - 1,
@@ -53,6 +75,10 @@ export default class Mesh {
           parseInt(data[3]) - 1)
       }
     }
+
+    this.center_x = this.center_x / this.vertex_count;
+    this.center_y = this.center_y / this.vertex_count;
+    this.center_z = this.center_z / this.vertex_count;
 
     console.log(coords, indices);
     this.heds.build(coords, indices);
@@ -105,13 +131,15 @@ export default class Mesh {
     //this.angle += 0.005;
 
     mat4.identity( this.model );
-    //mat4.translate(this.model, this.model, [this.delta, 0, 0]);
+    mat4.translate(this.model, this.model, [this.delta, 0, 0]);
   
     //mat4.rotateY(this.model, this.model, this.angle);
 
-    //mat4.translate(this.model, this.model, [-0.25, -0.25, -0.25]);
+    mat4.translate(this.model, this.model, [-this.center_x, -this.center_y, -this.center_z]);
 
-    //mat4.scale(this.model, this.model, [0.5, 0.5, 0.5]);
+    let height = this.max_x - this.min_x;
+    let scale = 50.0 / height
+    mat4.scale(this.model, this.model, [scale, scale, scale]);
     
   }
 
